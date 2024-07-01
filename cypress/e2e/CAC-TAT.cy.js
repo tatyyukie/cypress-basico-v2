@@ -104,6 +104,13 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     it("Marca o tipo de atendimento Feedback e verifica se o valor correto foi selecionado", function () {
         cy.get('input [type="radio"], [value="feedback"]')
             .check()
-            .should("have.value", "feedback")
+            .should("have.value", "feedback");
+    });
+
+    it.only("Marca cada tipo de atendimento e verifica se está marcado", function () {
+        cy.get('input[type="radio"]').each((radio) => {
+            cy.wrap(radio).check();
+            cy.wrap(radio).should("be.checked");
+        });
     });
 });

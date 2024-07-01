@@ -128,4 +128,10 @@ describe("Central de Atendimento ao Cliente TAT", function () {
         .should("not.have.value")
         .selectFile('./cypress/fixtures/example.json')
     });
+
+    it("Seleciona um arquivo simulando um drag-and-drop", function () {
+        cy.get('input[type=file]')
+        .should("not.have.value")
+        .selectFile('./cypress/fixtures/example.json', {action: 'drag-drop'})
+    });
 });

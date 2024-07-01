@@ -108,9 +108,9 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     });
 
     it.only("Marca cada tipo de atendimento e verifica se está marcado", function () {
-        cy.get('input[type="radio"]').each((radio) => {
-            cy.wrap(radio).check();
-            cy.wrap(radio).should("be.checked");
+        cy.get('input[type="radio"]').each(($radio) => {
+            cy.wrap($radio).check();
+            cy.wrap($radio).should("be.checked");
         });
     });
 });

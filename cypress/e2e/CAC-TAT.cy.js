@@ -11,24 +11,25 @@ describe("Central de Atendimento ao Cliente TAT", function () {
         cy.title().should("be.equal", "Central de Atendimento ao Cliente TAT");
     });
 
-    it("Preenche os campos obrigatórios do formulário e envia", function () {
-        cy.clock()
-        const longText =
-            "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.";
+    Cypress._.times(5, () => {
+        it.only("Preenche os campos obrigatórios do formulário e envia", function () {
+            cy.clock()
+            const longText = Cypress._.repeat("Teste ", 20);
 
-        cy.get("#firstName").type("Tatiana").should("have.value", "Tatiana");
-        cy.get("#lastName").type("Motoyama").should("have.value", "Motoyama");
-        cy.get("#email")
-            .type("tatiana@motoyama.com")
-            .should("have.value", "tatiana@motoyama.com");
-        cy.get("#phone")
-            .type("11999999999")
-            .should("have.value", "11999999999");
-        cy.get("#open-text-area").type(longText, { delay: 0 });
-        cy.contains("button", "Enviar").click();
-        cy.get(".success").should("be.visible");
-        cy.tick(3000)
-        cy.get(".success").should("not.be.visible");
+            cy.get("#firstName").type("Tatiana").should("have.value", "Tatiana");
+            cy.get("#lastName").type("Motoyama").should("have.value", "Motoyama");
+            cy.get("#email")
+                .type("tatiana@motoyama.com")
+                .should("have.value", "tatiana@motoyama.com");
+            cy.get("#phone")
+                .type("11999999999")
+                .should("have.value", "11999999999");
+            cy.get("#open-text-area").type(longText, { delay: 0 });
+            cy.contains("button", "Enviar").click();
+            cy.get(".success").should("be.visible");
+            cy.tick(3000)
+            cy.get(".success").should("not.be.visible");
+        });
     });
 
     it("Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida", function () {

@@ -12,7 +12,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     });
 
     Cypress._.times(5, () => {
-        it.only("Preenche os campos obrigatórios do formulário e envia", function () {
+        it("Preenche os campos obrigatórios do formulário e envia", function () {
             cy.clock()
             const longText = Cypress._.repeat("Teste ", 20);
 
